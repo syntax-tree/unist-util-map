@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/azu/unist-util-map/issues"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create a new Unist tree with all nodes that mapped by the provided function",
   "main": "lib/unist-util-map.js",
   "directories": {
