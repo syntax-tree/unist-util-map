@@ -1,6 +1,10 @@
 # unist-util-map [![Build Status](https://travis-ci.org/azu/unist-util-map.svg?branch=master)](https://travis-ci.org/azu/unist-util-map)
 
-Create a new Unist tree with all nodes that mapped by the provided function
+Create a new Unist tree with all nodes that mapped by the provided function.
+
+Helper for creating [unist: Universal Syntax Tree](https://github.com/wooorm/unist "wooorm/unist: Universal Syntax Tree").
+
+- retext, remark, hast, textlint
 
 ## Installation
 
