@@ -8,6 +8,10 @@ Create a new Unist tree with all nodes that mapped by the provided function
 
 ## Usage
 
+### `map(AST, function(node, index, parent){ /* return */ }): AST`
+
+map function return new AST object.
+
 ```js
 const map = require("unist-util-map");
 const ObjectAssign = require("object-assign");
