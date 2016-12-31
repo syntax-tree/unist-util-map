@@ -1,4 +1,4 @@
-# unist-util-map [![Build Status](https://travis-ci.org/azu/unist-util-map.svg?branch=master)](https://travis-ci.org/azu/unist-util-map)
+# unist-util-map [![Build Status](https://travis-ci.org/syntax-tree/unist-util-map.svg?branch=master)](https://travis-ci.org/syntax-tree/unist-util-map)
 
 Create a new Unist tree with all nodes that mapped by the provided function.
 

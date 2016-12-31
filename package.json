@@ -2,17 +2,17 @@
   "name": "unist-util-map",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azu/unist-util-map.git"
+    "url": "git+https://github.com/syntax-tree/unist-util-map.git"
   },
   "author": "azu",
   "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/azu/unist-util-map",
+  "homepage": "https://github.com/syntax-tree/unist-util-map",
   "license": "MIT",
   "files": [
     "lib/"
   ],
   "bugs": {
-    "url": "https://github.com/azu/unist-util-map/issues"
+    "url": "https://github.com/syntax-tree/unist-util-map/issues"
   },
   "version": "1.0.2",
   "description": "Create a new Unist tree with all nodes that mapped by the provided function",
@@ -29,7 +29,7 @@
     "util"
   ],
   "devDependencies": {
-    "mocha": "^2.4.5",
+    "mocha": "^3.2.0",
     "txt-to-ast": "^1.1.0",
     "unist-builder": "^1.0.1"
   },
