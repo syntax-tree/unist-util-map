@@ -70,6 +70,12 @@ assert.deepEqual(actual, expected);
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
 
+## Contribute
+
+See [`contribute.md` in `syntax-tree/unist`](https://github.com/syntax-tree/unist/blob/master/contributing.md) for ways to get started.
+
+This organisation has a [Code of Conduct](https://github.com/syntax-tree/unist/blob/master/code-of-conduct.md).  By interacting with this repository, organisation, or community you agree to abide by its terms.
+
 ## License
 
 MIT
