@@ -1,38 +1,35 @@
 {
   "name": "unist-util-map",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/syntax-tree/unist-util-map.git"
-  },
-  "author": "azu",
-  "email": "azuciao@gmail.com",
-  "homepage": "https://github.com/syntax-tree/unist-util-map",
-  "license": "MIT",
-  "files": [
-    "lib/"
-  ],
-  "bugs": {
-    "url": "https://github.com/syntax-tree/unist-util-map/issues"
-  },
   "version": "1.0.3",
   "description": "Create a new Unist tree with all nodes that mapped by the provided function",
-  "main": "lib/unist-util-map.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
+  "license": "MIT",
   "keywords": [
     "unist",
     "textlint",
     "util"
   ],
+  "repository": "syntax-tree/unist-util-map",
+  "bugs": "https://github.com/syntax-tree/unist-util-map/issues",
+  "author": "azu <azuciao@gmail.com>",
+  "contributors": [
+    "azu <azuciao@gmail.com>",
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "files": [
+    "lib/"
+  ],
+  "main": "lib/unist-util-map.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "object-assign": "^4.0.1"
+  },
   "devDependencies": {
     "mocha": "^4.0.0",
     "txt-to-ast": "^2.0.0"
   },
-  "dependencies": {
-    "object-assign": "^4.0.1"
+  "scripts": {
+    "test": "mocha"
   }
 }
