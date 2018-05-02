@@ -1,14 +1,16 @@
-# unist-util-map [![Build Status](https://travis-ci.org/syntax-tree/unist-util-map.svg?branch=master)](https://travis-ci.org/syntax-tree/unist-util-map)
+# unist-util-visit-parents [![Build Status][build-badge]][build-page]
 
 Create a new Unist tree with all nodes that mapped by the provided function.
 
-Helper for creating [unist: Universal Syntax Tree](https://github.com/wooorm/unist "wooorm/unist: Universal Syntax Tree").
+Helper for creating [unist: Universal Syntax Tree][unist].
 
-- retext, remark, hast, textlint
+*   retext, remark, hast, textlint
 
 ## Installation
 
-    npm install unist-util-map
+```sh
+npm install unist-util-map
+```
 
 ## Usage
 
@@ -60,22 +62,34 @@ assert.deepEqual(actual, expected);
 
 ## Tests
 
-    npm test
+```sh
+npm test
+```
 
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+1.  Fork it!
+2.  Create your feature branch: `git checkout -b my-new-feature`
+3.  Commit your changes: `git commit -am 'Add some feature'`
+4.  Push to the branch: `git push origin my-new-feature`
+5.  Submit a pull request :D
 
-## Contribute
+See [`contribute.md` in `syntax-tree/unist`][contributing] for ways to get
+started.
 
-See [`contribute.md` in `syntax-tree/unist`](https://github.com/syntax-tree/unist/blob/master/contributing.md) for ways to get started.
-
-This organisation has a [Code of Conduct](https://github.com/syntax-tree/unist/blob/master/code-of-conduct.md).  By interacting with this repository, organisation, or community you agree to abide by its terms.
+This organisation has a [Code of Conduct][coc].  By interacting with this
+repository, organisation, or community you agree to abide by its terms.
 
 ## License
 
 MIT
+
+[build-badge]: https://img.shields.io/travis/syntax-tree/unist-util-map.svg
+
+[build-page]: https://travis-ci.org/syntax-tree/unist-util-map
+
+[unist]: https://github.com/wooorm/unist "wooorm/unist: Universal Syntax Tree"
+
+[contributing]: https://github.com/syntax-tree/unist/blob/master/contributing.md
+
+[coc]: https://github.com/syntax-tree/unist/blob/master/code-of-conduct.md
