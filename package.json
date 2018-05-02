@@ -19,9 +19,6 @@
     "lib/"
   ],
   "main": "lib/unist-util-map.js",
-  "directories": {
-    "test": "test"
-  },
   "dependencies": {
     "object-assign": "^4.0.1"
   },

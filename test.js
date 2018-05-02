@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("assert");
-const map = require("../lib/unist-util-map");
+const map = require(".");
 const parse = require("txt-to-ast").parse;
 const Syntax = require("txt-to-ast").Syntax;
 const ObjectAssign = require("object-assign");
