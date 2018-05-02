@@ -2,8 +2,8 @@
 "use strict";
 const assert = require("assert");
 const map = require(".");
-const parse = require("txt-to-ast").parse;
-const Syntax = require("txt-to-ast").Syntax;
+const parse = require("@textlint/text-to-ast").parse;
+const Syntax = require("@textlint/text-to-ast").Syntax;
 const ObjectAssign = require("object-assign");
 describe('should not traverse into children of filtered out nodes', function (t) {
     it("should map specified node", function () {
