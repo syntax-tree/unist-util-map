@@ -1,10 +1,10 @@
-# unist-util-visit-parents [![Build Status][build-badge]][build-page]
+# unist-util-map [![Build Status][build-badge]][build-page]
 
 Create a new Unist tree with all nodes that mapped by the provided function.
 
 Helper for creating [unist: Universal Syntax Tree][unist].
 
-*   retext, remark, hast, textlint
+*   [retext][], [remark][], [rehype][], [textlint][]
 
 ## Installation
 
@@ -19,45 +19,44 @@ npm install unist-util-map
 map function return new AST object.
 
 ```js
-const map = require("unist-util-map");
-const ObjectAssign = require("object-assign");
-// input
-const ast = {
-    "type": "root",
-    "children": [
-        {
-            "type": "node",
-            "children": [
-                {"type": "leaf", "value": "1"}
-            ]
-        },
-        {"type": "leaf", "value": "2"}
-    ]
-};
-// tranformed
-const actual = map(ast, function (node) {
-    if (node.type === "leaf") {
-        return ObjectAssign({}, node, {
-            value: "CHANGED"
-        });
-    }
-    // no change
-    return node;
-});
-// output
+const assert = require('assert')
+const assign = require('object-assign')
+const map = require('unist-util-map')
+
+// Input
+const tree = {
+  type: 'root',
+  children: [
+    {
+      type: 'node',
+      children: [{type: 'leaf', value: '1'}]
+    },
+    {type: 'leaf', value: '2'}
+  ]
+}
+
+// Transform:
+const actual = map(tree, function(node) {
+  if (node.type === 'leaf') {
+    return assign({}, node, {value: 'CHANGED'})
+  }
+  // No change
+  return node
+})
+
+// Expected output:
 const expected = {
-    "type": "root",
-    "children": [
-        {
-            "type": "node",
-            "children": [
-                {"type": "leaf", "value": "CHANGED"}
-            ]
-        },
-        {"type": "leaf", "value": "CHANGED"}
-    ]
-};
-assert.deepEqual(actual, expected);
+  type: 'root',
+  children: [
+    {
+      type: 'node',
+      children: [{type: 'leaf', value: 'CHANGED'}]
+    },
+    {type: 'leaf', value: 'CHANGED'}
+  ]
+}
+
+assert.deepEqual(actual, expected)
 ```
 
 ## Tests
@@ -82,7 +81,7 @@ repository, organisation, or community you agree to abide by its terms.
 
 ## License
 
-MIT
+[MIT][]
 
 [build-badge]: https://img.shields.io/travis/syntax-tree/unist-util-map.svg
 
@@ -93,3 +92,13 @@ MIT
 [contributing]: https://github.com/syntax-tree/unist/blob/master/contributing.md
 
 [coc]: https://github.com/syntax-tree/unist/blob/master/code-of-conduct.md
+
+[remark]: https://github.com/remarkjs/remark
+
+[retext]: https://github.com/retextjs/retext
+
+[rehype]: https://github.com/rehypejs/rehype
+
+[textlint]: https://github.com/textlint/textlint
+
+[mit]: LICENSE
