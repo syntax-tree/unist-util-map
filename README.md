@@ -101,4 +101,4 @@ repository, organisation, or community you agree to abide by its terms.
 
 [textlint]: https://github.com/textlint/textlint
 
-[mit]: LICENSE
+[mit]: license
