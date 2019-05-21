@@ -115,21 +115,21 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/syntax-tree/unist-util-find-all-after.svg
+[build-badge]: https://img.shields.io/travis/syntax-tree/unist-util-map.svg
 
-[build]: https://travis-ci.org/syntax-tree/unist-util-find-all-after
+[build]: https://travis-ci.org/syntax-tree/unist-util-map
 
-[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/unist-util-find-all-after.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/unist-util-map.svg
 
-[coverage]: https://codecov.io/github/syntax-tree/unist-util-find-all-after
+[coverage]: https://codecov.io/github/syntax-tree/unist-util-map
 
-[downloads-badge]: https://img.shields.io/npm/dm/unist-util-find-all-after.svg
+[downloads-badge]: https://img.shields.io/npm/dm/unist-util-map.svg
 
-[downloads]: https://www.npmjs.com/package/unist-util-find-all-after
+[downloads]: https://www.npmjs.com/package/unist-util-map
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/unist-util-find-all-after.svg
+[size-badge]: https://img.shields.io/bundlephobia/minzip/unist-util-map.svg
 
-[size]: https://bundlephobia.com/result?p=unist-util-find-all-after
+[size]: https://bundlephobia.com/result?p=unist-util-map
 
 [npm]: https://docs.npmjs.com/cli/install
 
