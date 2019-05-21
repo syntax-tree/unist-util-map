@@ -24,17 +24,18 @@
     "object-assign": "^4.0.1"
   },
   "devDependencies": {
-    "mocha": "^6.0.0",
     "nyc": "^14.0.0",
     "prettier": "^1.0.0",
     "remark-cli": "^6.0.0",
     "remark-preset-wooorm": "^5.0.0",
+    "tape": "^4.10.1",
+    "unist-builder": "^1.0.3",
     "xo": "^0.24.0"
   },
   "scripts": {
     "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix",
-    "test-api": "mocha",
-    "test-coverage": "nyc --reporter lcov mocha test.js",
+    "test-api": "node test",
+    "test-coverage": "nyc --reporter lcov tape test.js",
     "test": "npm run format && npm run test-coverage"
   },
   "nyc": {

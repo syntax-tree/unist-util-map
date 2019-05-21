@@ -1,92 +1,40 @@
-// LICENSE : MIT
 'use strict'
 
-/* eslint-env mocha */
+var test = require('tape')
+var assign = require('object-assign')
+var u = require('unist-builder')
+var map = require('.')
 
-const assert = require('assert')
-const assign = require('object-assign')
-const map = require('.')
+test('unist-util-map', function(t) {
+  t.deepEqual(
+    map(u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')]), changeLeaf),
+    u('root', [u('node', [u('leaf', 'CHANGED')]), u('leaf', 'CHANGED')]),
+    'should map the specified node'
+  )
 
-describe('should not traverse into children of filtered out nodes', function() {
-  it('should map specified node', function() {
-    const ast = {
-      type: 'root',
-      children: [
-        {
-          type: 'node',
-          children: [{type: 'leaf', value: '1'}]
-        },
-        {type: 'leaf', value: '2'}
-      ]
-    }
-    const actual = map(ast, function(node) {
-      if (node.type === 'leaf') {
-        return assign({}, node, {
-          value: 'CHANGED'
-        })
-      }
+  t.deepEqual(
+    map(u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')]), nullLeaf),
+    u('root', [u('node', [{}]), {}]),
+    'should work when retuning an empty object'
+  )
 
-      // No change
-      return node
-    })
-    const expected = {
-      type: 'root',
-      children: [
-        {
-          type: 'node',
-          children: [{type: 'leaf', value: 'CHANGED'}]
-        },
-        {type: 'leaf', value: 'CHANGED'}
-      ]
-    }
-    assert.deepStrictEqual(actual, expected)
-  })
-  context('when return null', function() {
-    it('should map as empty object', function() {
-      const ast = {
-        type: 'root',
-        children: [
-          {
-            type: 'node',
-            children: [{type: 'leaf', value: '1'}]
-          },
-          {type: 'leaf', value: '2'}
-        ]
-      }
-      const actual = map(ast, function(node) {
-        if (node.type === 'leaf') {
-          return null
-        }
+  t.deepEqual(
+    map({}, addValue),
+    {value: 'test'},
+    'should work when passing an empty object'
+  )
 
-        // No change
-        return node
-      })
-      const expected = {
-        type: 'root',
-        children: [
-          {
-            type: 'node',
-            children: [{}]
-          },
-          {}
-        ]
-      }
-      assert.deepStrictEqual(actual, expected)
-    })
-  })
+  t.end()
 
-  context('when pass empty object', function() {
-    it('should work map', function() {
-      const ast = {}
-      const actual = map(ast, function() {
-        return {
-          value: 'test'
-        }
-      })
-      const expected = {
-        value: 'test'
-      }
-      assert.deepStrictEqual(actual, expected)
-    })
-  })
+  function changeLeaf(node) {
+    return node.type === 'leaf' ? assign({}, node, {value: 'CHANGED'}) : node
+  }
+
+  function nullLeaf(node) {
+    return node.type === 'leaf' ? null : node
+  }
+
+  function addValue() {
+    return {value: 'test'}
+  }
 })
