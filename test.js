@@ -25,6 +25,7 @@ describe('should not traverse into children of filtered out nodes', function() {
           value: 'CHANGED'
         })
       }
+
       // No change
       return node
     })
@@ -38,7 +39,7 @@ describe('should not traverse into children of filtered out nodes', function() {
         {type: 'leaf', value: 'CHANGED'}
       ]
     }
-    assert.deepEqual(actual, expected)
+    assert.deepStrictEqual(actual, expected)
   })
   context('when return null', function() {
     it('should map as empty object', function() {
@@ -56,6 +57,7 @@ describe('should not traverse into children of filtered out nodes', function() {
         if (node.type === 'leaf') {
           return null
         }
+
         // No change
         return node
       })
@@ -69,7 +71,7 @@ describe('should not traverse into children of filtered out nodes', function() {
           {}
         ]
       }
-      assert.deepEqual(actual, expected)
+      assert.deepStrictEqual(actual, expected)
     })
   })
 
@@ -84,7 +86,7 @@ describe('should not traverse into children of filtered out nodes', function() {
       const expected = {
         value: 'test'
       }
-      assert.deepEqual(actual, expected)
+      assert.deepStrictEqual(actual, expected)
     })
   })
 })
