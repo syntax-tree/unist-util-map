@@ -5,8 +5,8 @@ var assign = require('object-assign')
 
 module.exports = map
 
-function map(ast, iteratee) {
-  return preorder(ast, null, null)
+function map(tree, iteratee) {
+  return preorder(tree, null, null)
 
   function preorder(node, index, parent) {
     var children = node.children
