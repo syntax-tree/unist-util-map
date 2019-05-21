@@ -84,6 +84,21 @@ Function called with a [node][] to produce a new node.
 [`Node`][node] — Node to be used in the new [tree][].
 Its children are not used: if the original node has children, those are mapped.
 
+## Related
+
+*   [`unist-util-filter`](https://github.com/syntax-tree/unist-util-filter)
+    — Create a new tree with all nodes that pass the given function
+*   [`unist-util-flatmap`](https://gitlab.com/staltz/unist-util-flatmap)
+    — Create a new tree by expanding a node into many
+*   [`unist-util-remove`](https://github.com/syntax-tree/unist-util-remove)
+    — Remove nodes from trees
+*   [`unist-util-select`](https://github.com/syntax-tree/unist-util-select)
+    — Select nodes with CSS-like selectors
+*   [`unist-util-visit`](https://github.com/syntax-tree/unist-util-visit)
+    — Recursively walk over nodes
+*   [`unist-builder`](https://github.com/syntax-tree/unist-builder)
+    — Creating trees
+
 ## Contribute
 
 See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
