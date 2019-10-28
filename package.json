@@ -15,28 +15,35 @@
   "author": "azu <azuciao@gmail.com>",
   "contributors": [
     "azu <azuciao@gmail.com>",
-    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
+    "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
+    "Christian Murphy <christian.murphy.42@gmail.com>"
   ],
   "files": [
-    "index.js"
+    "index.js",
+    "types/index.d.ts"
   ],
+  "types": "types/index.d.ts",
   "dependencies": {
+    "@types/mdast": "^3.0.3",
     "object-assign": "^4.0.1"
   },
   "devDependencies": {
+    "dtslint": "^0.9.9",
     "nyc": "^14.0.0",
     "prettier": "^1.0.0",
     "remark-cli": "^6.0.0",
     "remark-preset-wooorm": "^5.0.0",
     "tape": "^4.10.1",
     "unist-builder": "^1.0.3",
+    "unist-util-is": "^4.0.0",
     "xo": "^0.24.0"
   },
   "scripts": {
     "format": "remark . -qfo && prettier --write \"**/*.js\" && xo --fix",
     "test-api": "node test",
     "test-coverage": "nyc --reporter lcov tape test.js",
-    "test": "npm run format && npm run test-coverage"
+    "test-types": "dtslint types",
+    "test": "npm run format && npm run test-coverage && npm run test-types"
   },
   "nyc": {
     "check-coverage": true,
