@@ -12,6 +12,10 @@
   ],
   "repository": "syntax-tree/unist-util-map",
   "bugs": "https://github.com/syntax-tree/unist-util-map/issues",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/unified"
+  },
   "author": "azu <azuciao@gmail.com>",
   "contributors": [
     "azu <azuciao@gmail.com>",
