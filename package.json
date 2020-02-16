@@ -1,14 +1,18 @@
 {
   "name": "unist-util-map",
   "version": "2.0.0",
-  "description": "Create a new Unist tree with all nodes that mapped by the provided function",
+  "description": "unist utility to create a new tree by mapping all nodes",
   "license": "MIT",
   "keywords": [
     "unist",
-    "node",
-    "textlint",
+    "unist-util",
     "util",
-    "utility"
+    "utility",
+    "node",
+    "tree",
+    "map",
+    "walk",
+    "visit"
   ],
   "repository": "syntax-tree/unist-util-map",
   "bugs": "https://github.com/syntax-tree/unist-util-map/issues",
