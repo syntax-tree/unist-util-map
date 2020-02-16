@@ -2,6 +2,7 @@
   "extends": "dtslint/dtslint.json",
   "rules": {
     "whitespace": false,
-    "semicolon": false
+    "semicolon": false,
+    "strict-export-declare-modifiers": false
   }
 }

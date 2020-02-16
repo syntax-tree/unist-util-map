@@ -36,12 +36,13 @@
     "object-assign": "^4.0.0"
   },
   "devDependencies": {
-    "dtslint": "^0.9.0",
+    "dtslint": "^3.0.0",
     "nyc": "^15.0.0",
     "prettier": "^1.0.0",
     "remark-cli": "^7.0.0",
     "remark-preset-wooorm": "^6.0.0",
     "tape": "^4.0.0",
+    "typescript": "^3.0.0",
     "unist-builder": "^2.0.0",
     "unist-util-is": "^4.0.0",
     "xo": "^0.26.0"
