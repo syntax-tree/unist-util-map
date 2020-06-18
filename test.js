@@ -5,7 +5,7 @@ var assign = require('object-assign')
 var u = require('unist-builder')
 var map = require('.')
 
-test('unist-util-map', function(t) {
+test('unist-util-map', function (t) {
   t.deepEqual(
     map(u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')]), changeLeaf),
     u('root', [u('node', [u('leaf', 'CHANGED')]), u('leaf', 'CHANGED')]),

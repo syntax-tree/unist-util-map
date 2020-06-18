@@ -3,7 +3,11 @@
 import {Node} from 'unist'
 
 declare namespace unistUtilMap {
-  type MapFunction = (node: Node, index: number | null, parent: Node | null) => Node
+  type MapFunction = (
+    node: Node,
+    index: number | null,
+    parent: Node | null
+  ) => Node
 }
 
 /**
@@ -14,6 +18,9 @@ declare namespace unistUtilMap {
  * @returns Node to be used in the new tree.
  *   Its children are not used: if the original node has children, those are mapped.
  */
-declare function unistUtilMap(tree: Node, callback: unistUtilMap.MapFunction): Node
+declare function unistUtilMap(
+  tree: Node,
+  callback: unistUtilMap.MapFunction
+): Node
 
 export = unistUtilMap
