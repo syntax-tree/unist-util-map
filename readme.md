@@ -118,9 +118,9 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/syntax-tree/unist-util-map.svg
+[build-badge]: https://github.com/syntax-tree/unist-util-map/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/syntax-tree/unist-util-map
+[build]: https://github.com/syntax-tree/unist-util-map/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/syntax-tree/unist-util-map.svg
 
