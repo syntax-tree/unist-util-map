@@ -11,7 +11,7 @@ declare namespace unistUtilMap {
 }
 
 /**
- * unist utility to create a new tree by mapping all nodes with the given function.
+ * Unist utility to create a new tree by mapping all nodes with the given function.
  *
  * @param tree Tree to map
  * @param callback Function that returns a new node
