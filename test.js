@@ -1,3 +1,7 @@
+/**
+ * @typedef {import('unist').Node} Node
+ */
+
 import test from 'tape'
 import u from 'unist-builder'
 import {map} from './index.js'
@@ -16,6 +20,7 @@ test('unist-util-map', function (t) {
   )
 
   t.deepEqual(
+    // @ts-ignore runtime.
     map({}, addValue),
     {value: 'test'},
     'should work when passing an empty object'
@@ -23,12 +28,20 @@ test('unist-util-map', function (t) {
 
   t.end()
 
+  /**
+   * @param {Node} node
+   * @returns {Node}
+   */
   function changeLeaf(node) {
     return node.type === 'leaf'
       ? Object.assign({}, node, {value: 'CHANGED'})
       : node
   }
 
+  /**
+   * @param {Node} node
+   * @returns {Node?}
+   */
   function nullLeaf(node) {
     return node.type === 'leaf' ? null : node
   }
