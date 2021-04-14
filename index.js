@@ -13,13 +13,11 @@ function map(tree, iteratee) {
     var newNode = assign({}, iteratee(node, index, parent))
 
     if (children) {
-      newNode.children = children.map(bound)
+      newNode.children = children.map(function (child, index) {
+        return preorder(child, index, node)
+      })
     }
 
     return newNode
-
-    function bound(child, index) {
-      return preorder(child, index, node)
-    }
   }
 }
