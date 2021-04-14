@@ -26,18 +26,18 @@
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
     "Christian Murphy <christian.murphy.42@gmail.com>"
   ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "index.js",
+  "types": "types/index.d.ts",
   "files": [
     "index.js",
     "types/index.d.ts"
   ],
-  "types": "types/index.d.ts",
-  "dependencies": {
-    "@types/mdast": "^3.0.0",
-    "object-assign": "^4.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "c8": "^7.0.0",
     "dtslint": "^4.0.0",
-    "nyc": "^15.0.0",
     "prettier": "^2.0.0",
     "remark-cli": "^9.0.0",
     "remark-preset-wooorm": "^8.0.0",
@@ -49,16 +49,10 @@
   },
   "scripts": {
     "format": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
-    "test-api": "node test",
-    "test-coverage": "nyc --reporter lcov tape test.js",
+    "test-api": "node test.js",
+    "test-coverage": "c8 --check-coverage --branches 100 --functions 100 --lines 100 --statements 100 --reporter lcov node test.js",
     "test-types": "dtslint types",
     "test": "npm run format && npm run test-coverage && npm run test-types"
-  },
-  "nyc": {
-    "check-coverage": true,
-    "lines": 100,
-    "functions": 100,
-    "branches": 100
   },
   "prettier": {
     "tabWidth": 2,
@@ -70,13 +64,10 @@
   },
   "xo": {
     "prettier": true,
-    "esnext": false,
     "rules": {
-      "unicorn/no-fn-reference-in-iterator": "off"
-    },
-    "ignore": [
-      "types/"
-    ]
+      "no-var": "off",
+      "prefer-arrow-callback": "off"
+    }
   },
   "remarkConfig": {
     "plugins": [

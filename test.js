@@ -1,9 +1,6 @@
-'use strict'
-
-var test = require('tape')
-var assign = require('object-assign')
-var u = require('unist-builder')
-var map = require('.')
+import test from 'tape'
+import u from 'unist-builder'
+import {map} from './index.js'
 
 test('unist-util-map', function (t) {
   t.deepEqual(
@@ -27,7 +24,9 @@ test('unist-util-map', function (t) {
   t.end()
 
   function changeLeaf(node) {
-    return node.type === 'leaf' ? assign({}, node, {value: 'CHANGED'}) : node
+    return node.type === 'leaf'
+      ? Object.assign({}, node, {value: 'CHANGED'})
+      : node
   }
 
   function nullLeaf(node) {

@@ -1,19 +1,11 @@
-// LICENSE : MIT
-'use strict'
-
-var assign = require('object-assign')
-
-module.exports = map
-
-function map(tree, iteratee) {
+export function map(tree, iteratee) {
   return preorder(tree, null, null)
 
   function preorder(node, index, parent) {
-    var children = node.children
-    var newNode = assign({}, iteratee(node, index, parent))
+    var newNode = Object.assign({}, iteratee(node, index, parent))
 
-    if (children) {
-      newNode.children = children.map(function (child, index) {
+    if (node.children) {
+      newNode.children = node.children.map(function (child, index) {
         return preorder(child, index, node)
       })
     }
