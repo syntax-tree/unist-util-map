@@ -3,7 +3,7 @@
  */
 
 import test from 'tape'
-import u from 'unist-builder'
+import {u} from 'unist-builder'
 import {map} from './index.js'
 
 test('unist-util-map', function (t) {
@@ -15,6 +15,7 @@ test('unist-util-map', function (t) {
 
   t.deepEqual(
     map(u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')]), nullLeaf),
+    // @ts-expect-error: not valid but tested anyway.
     u('root', [u('node', [{}]), {}]),
     'should work when retuning an empty object'
   )

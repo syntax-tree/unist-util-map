@@ -25,7 +25,7 @@ npm install unist-util-map
 ## Use
 
 ```js
-import u from 'unist-builder'
+import {u} from 'unist-builder'
 import {map} from 'unist-util-map'
 
 var tree = u('tree', [
