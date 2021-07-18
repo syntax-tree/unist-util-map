@@ -32,13 +32,13 @@ export function map(tree, iteratee) {
   function preorder(node, index, parent) {
     var newNode = Object.assign({}, iteratee(node, index, parent))
 
-    if (node.children) {
-      // @ts-ignore Looks like a parent.
+    if ('children' in node) {
+      // @ts-expect-error Looks like a parent.
       newNode.children = node.children.map(function (
         /** @type {Node} */ child,
         /** @type {number} */ index
       ) {
-        // @ts-ignore Looks like a parent.
+        // @ts-expect-error Looks like a parent.
         return preorder(child, index, node)
       })
     }

@@ -20,7 +20,7 @@ test('unist-util-map', function (t) {
   )
 
   t.deepEqual(
-    // @ts-ignore runtime.
+    // @ts-expect-error runtime.
     map({}, addValue),
     {value: 'test'},
     'should work when passing an empty object'
