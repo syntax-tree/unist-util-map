@@ -30,8 +30,9 @@ test('unist-util-map', function (t) {
   t.end()
 
   /**
-   * @param {Node} node
-   * @returns {Node}
+   * @template {Node} TNode
+   * @param {TNode} node
+   * @returns {TNode}
    */
   function changeLeaf(node) {
     return node.type === 'leaf'
@@ -40,8 +41,9 @@ test('unist-util-map', function (t) {
   }
 
   /**
-   * @param {Node} node
-   * @returns {Node?}
+   * @template {Node} TNode
+   * @param {TNode} node
+   * @returns {TNode?}
    */
   function nullLeaf(node) {
     return node.type === 'leaf' ? null : node

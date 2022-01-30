@@ -1,33 +1,41 @@
 /**
- * @typedef {import('unist').Node} Node
+ * @typedef {import('unist').Data} Data
+ */
+/**
+ * @template {object} [TData=Data]
+ * @typedef {import('unist').Node<TData>} Node<TData>
  * @typedef {import('unist').Parent} Parent
  */
 
 /**
  * Function called with a node to produce a new node.
  *
+ * @template {Node<object>} [OutputNode = Node]
+ * @template {Node<object>} [InputNode = OutputNode]
  * @callback MapFunction
- * @param {Node} node Current node being processed
+ * @param {InputNode} node Current node being processed
  * @param {number} [index] Index of `node`, or `null`
- * @param {Parent} [parent] Parent of `node`, or `null`
- * @returns {Node} Node to be used in the new tree. Its children are not used: if the original node has children, those are mapped.
+ * @param {Parent<InputNode>} [parent] Parent of `node`, or `null`
+ * @returns {OutputNode} Node to be used in the new tree. Its children are not used: if the original node has children, those are mapped.
  */
 
 /**
  * Unist utility to create a new tree by mapping all nodes with the given function.
  *
- * @param {Node} tree Tree to map
- * @param {MapFunction} iteratee Function that returns a new node
- * @returns {Node} New mapped tree.
+ * @template {Node<object>} [OutputNode = Node]
+ * @template {Node<object>} [InputNode = OutputNode]
+ * @param {InputNode} tree Tree to map
+ * @param {MapFunction<OutputNode, InputNode>} iteratee Function that returns a new node
+ * @returns {OutputNode} New mapped tree.
  */
 export function map(tree, iteratee) {
   return preorder(tree, null, null)
 
   /**
-   * @param {Node} node
+   * @param {InputNode} node
    * @param {number} [index]
-   * @param {Parent} [parent]
-   * @returns {Node}
+   * @param {Parent<InputNode>} [parent]
+   * @returns {OutputNode}
    */
   function preorder(node, index, parent) {
     var newNode = Object.assign({}, iteratee(node, index, parent))
