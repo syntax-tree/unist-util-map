@@ -2,8 +2,8 @@
  * @typedef {import('unist').Data} Data
  */
 /**
- * @template {object} [TData=Data]
- * @typedef {import('unist').Node<TData>} Node<TData>
+ * @template {object} [DateLike=Data]
+ * @typedef {import('unist').Node<DateLike>} Node<DateLike>
  * @typedef {import('unist').Parent} Parent
  */
 
