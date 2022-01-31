@@ -41,9 +41,9 @@ test('unist-util-map', function (t) {
   }
 
   /**
-   * @template {Node} TNode
-   * @param {TNode} node
-   * @returns {TNode?}
+   * @template {Node} NodeLike
+   * @param {NodeLike} node
+   * @returns {NodeLike?}
    */
   function nullLeaf(node) {
     return node.type === 'leaf' ? null : node
