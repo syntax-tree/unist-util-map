@@ -14,6 +14,21 @@ test('unist-util-map', function (t) {
   )
 
   t.deepEqual(
+    map(
+      {
+        type: 'root',
+        children: [
+          {type: 'node', children: [{type: 'leaf', value: '1'}]},
+          {type: 'leaf', value: '2'}
+        ]
+      },
+      changeLeaf
+    ),
+    u('root', [u('node', [u('leaf', 'CHANGED')]), u('leaf', 'CHANGED')]),
+    'should map the specified node'
+  )
+
+  t.deepEqual(
     map(u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')]), nullLeaf),
     // @ts-expect-error: not valid but tested anyway.
     u('root', [u('node', [{}]), {}]),

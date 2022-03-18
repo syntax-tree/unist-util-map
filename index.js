@@ -1,30 +1,32 @@
 /**
- * @typedef {import('unist').Node} Node
  * @typedef {import('unist').Parent} Parent
+ * @typedef {import('unist').Position} Position
+ * @typedef {import('unist').Node} Node
+ * @typedef {Record<string, unknown> & {type: string, position?: Position|undefined}} NodeLike
  */
 
 /**
  * Function called with a node to produce a new node.
  *
  * @callback MapFunction
- * @param {Node} node Current node being processed
+ * @param {NodeLike|Node} node Current node being processed
  * @param {number} [index] Index of `node`, or `null`
  * @param {Parent} [parent] Parent of `node`, or `null`
- * @returns {Node} Node to be used in the new tree. Its children are not used: if the original node has children, those are mapped.
+ * @returns {NodeLike|Node} Node to be used in the new tree. Its children are not used: if the original node has children, those are mapped.
  */
 
 /**
  * Unist utility to create a new tree by mapping all nodes with the given function.
  *
- * @param {Node} tree Tree to map
+ * @param {NodeLike|Node} tree Tree to map
  * @param {MapFunction} iteratee Function that returns a new node
- * @returns {Node} New mapped tree.
+ * @returns {NodeLike|Node} New mapped tree.
  */
 export function map(tree, iteratee) {
   return preorder(tree, null, null)
 
   /**
-   * @param {Node} node
+   * @param {NodeLike|Node} node
    * @param {number} [index]
    * @param {Parent} [parent]
    * @returns {Node}
