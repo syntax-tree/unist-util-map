@@ -1,5 +1,8 @@
 /**
- * @typedef {import('unist').Node} Node
+ * @typedef {{type: 'leaf', value: string}} Leaf
+ * @typedef {{type: 'node', children: (Node | Leaf)[]}} Node
+ * @typedef {{type: 'root', children: (Node | Leaf)[]}} Root
+ * @typedef {Root | Node | Leaf} AnyNode
  */
 
 import test from 'tape'
@@ -15,13 +18,14 @@ test('unist-util-map', function (t) {
 
   t.deepEqual(
     map(
-      {
+      /** @type {Root} */
+      ({
         type: 'root',
         children: [
           {type: 'node', children: [{type: 'leaf', value: '1'}]},
           {type: 'leaf', value: '2'}
         ]
-      },
+      }),
       changeLeaf
     ),
     u('root', [u('node', [u('leaf', 'CHANGED')]), u('leaf', 'CHANGED')]),
@@ -45,8 +49,8 @@ test('unist-util-map', function (t) {
   t.end()
 
   /**
-   * @param {Node} node
-   * @returns {Node}
+   * @param {AnyNode} node
+   * @returns {AnyNode}
    */
   function changeLeaf(node) {
     return node.type === 'leaf'
@@ -55,8 +59,8 @@ test('unist-util-map', function (t) {
   }
 
   /**
-   * @param {Node} node
-   * @returns {Node?}
+   * @param {AnyNode} node
+   * @returns {AnyNode?}
    */
   function nullLeaf(node) {
     return node.type === 'leaf' ? null : node
