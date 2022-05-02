@@ -18,6 +18,6 @@ export type InclusiveDescendant<
 
 export type MapFunction<Tree extends Node = Node> = (
   node: InclusiveDescendant<Tree>,
-  index: number | null,
-  parent: InclusiveDescendant<Tree> | null
+  index: number | undefined,
+  parent: InclusiveDescendant<Tree> | undefined
 ) => InclusiveDescendant<Tree>
