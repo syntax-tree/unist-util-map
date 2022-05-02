@@ -31,6 +31,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "files": [
+    "complex-types.d.ts",
     "index.d.ts",
     "index.js"
   ],
