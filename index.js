@@ -21,7 +21,7 @@ export function map(tree, iteratee) {
     if ('children' in node) {
       // @ts-expect-error Looks like a parent.
       newNode.children = node.children.map(function (
-        /** @type {import('./complex-types').NodeOfTree<Tree>} */ child,
+        /** @type {import('./complex-types').InclusiveDescendant<Tree>} */ child,
         /** @type {number} */ index
       ) {
         return preorder(child, index, node)
