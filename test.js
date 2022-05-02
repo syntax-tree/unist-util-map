@@ -1,7 +1,7 @@
 /**
  * @typedef {{type: 'leaf', value: string}} Leaf
- * @typedef {{type: 'node', children: (Node | Leaf)[]}} Node
- * @typedef {{type: 'root', children: (Node | Leaf)[]}} Root
+ * @typedef {{type: 'node', children: Array<Node | Leaf>}} Node
+ * @typedef {{type: 'root', children: Array<Node | Leaf>}} Root
  * @typedef {Root | Node | Leaf} AnyNode
  */
 
