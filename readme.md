@@ -8,18 +8,63 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[**unist**][unist] utility to create a new [tree][] by mapping all [node][]s
-with the given function.
+[unist][] utility to create a new tree by mapping all nodes with a given
+function.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`map(tree, mapFunction)`](#maptree-mapfunction)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Related](#related)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This is a small utility that helps you make new trees.
+
+## When should I use this?
+
+You can use this utility to create a new tree by mapping all nodes with a given
+function.
+Creating new trees like this can lead to performance problems, as it creates
+new objects for every node.
+When dealing with potentially large trees, and relatively few changes, use
+[`unist-util-visit`][unist-util-visit] (or
+[`unist-util-visit-parents`][unist-util-visit-parents]) instead.
+
+To remove certain nodes, you can also walk the tree with `unist-util-visit`, or
+use [`unist-util-filter`][unist-util-filter] (clones the tree instead of
+mutating) or [`unist-util-remove`][unist-util-remove] (mutates).
+To create trees, use [`unist-builder`][unist-builder].
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 12.20+, 14.14+, 16.0+, 18.0+), install with [npm][]:
 
 ```sh
 npm install unist-util-map
+```
+
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import {map} from "https://esm.sh/unist-util-map@3"
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import {map} from "https://esm.sh/unist-util-map@3?bundle"
+</script>
 ```
 
 ## Use
@@ -28,14 +73,14 @@ npm install unist-util-map
 import {u} from 'unist-builder'
 import {map} from 'unist-util-map'
 
-var tree = u('tree', [
+const tree = u('tree', [
   u('leaf', 'leaf 1'),
   u('node', [u('leaf', 'leaf 2')]),
   u('void'),
   u('leaf', 'leaf 3')
 ])
 
-var next = map(tree, function(node) {
+const next = map(tree, (node) => {
   return node.type === 'leaf'
     ? Object.assign({}, node, {value: 'CHANGED'})
     : node
@@ -58,60 +103,65 @@ Yields:
 }
 ```
 
-…note that `tree` is not mutated.
+> 👉 **Note**: `next` is a changed clone and `tree` is not mutated.
 
 ## API
 
-This package exports the following identifiers: `map`.
+This package exports the identifier `map`.
 There is no default export.
 
-### `map(tree, mapFn)`
+### `map(tree, mapFunction)`
 
-Create a new [tree][] by mapping all [node][]s with the given function.
-
-###### Parameters
-
-*   `tree` ([`Node`][node]) — [Tree][] to map
-*   `callback` ([`Function`][callback]) — Function that returns a new node
+Create a new tree ([`Node`][node]) by mapping all nodes with the given function
+([`MapFunction`][map-function]).
 
 ###### Returns
 
-[`Node`][node] — New mapped [tree][].
+New mapped tree ([`Node`][node]).
 
-#### `function mapFn(node[, index, parent])`
+#### `function mapFunction(node, index, parent)`
 
-Function called with a [node][] to produce a new node.
-
-###### Parameters
-
-*   `node` ([`Node`][node]) — Current [node][] being processed
-*   `index` (`number?`) — [Index][] of `node`, or `null`
-*   `parent` (`Node?`) — [Parent][] of `node`, or `null`
+Function called with a node ([`Node`][node]), its [index][] (`number?`), and its
+[parent][] (`Node?`) to produce a new node.
 
 ###### Returns
 
-[`Node`][node] — Node to be used in the new [tree][].
-Its children are not used: if the original node has children, those are mapped.
+Node to be used in the new tree ([`Node`][node]).
+The children on the returned node are not used.
+if the original node has children, those are mapped instead.
+
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports a type `MapFunction<Tree extends Node = Node>` from
+`unist-util-map/complex-types.d.ts` to properly type `MapFunction`s.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
+Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Related
 
 *   [`unist-util-filter`](https://github.com/syntax-tree/unist-util-filter)
-    — Create a new tree with all nodes that pass the given function
+    — create a new tree with all nodes that pass the given function
 *   [`unist-util-flatmap`](https://gitlab.com/staltz/unist-util-flatmap)
-    — Create a new tree by expanding a node into many
+    — create a new tree by expanding a node into many
 *   [`unist-util-remove`](https://github.com/syntax-tree/unist-util-remove)
-    — Remove nodes from trees
+    — remove nodes from trees
 *   [`unist-util-select`](https://github.com/syntax-tree/unist-util-select)
-    — Select nodes with CSS-like selectors
+    — select nodes with CSS-like selectors
 *   [`unist-util-visit`](https://github.com/syntax-tree/unist-util-visit)
-    — Recursively walk over nodes
+    — walk trees
 *   [`unist-builder`](https://github.com/syntax-tree/unist-builder)
-    — Creating trees
+    — create trees
 
 ## Contribute
 
-See [`contributing.md` in `syntax-tree/.github`][contributing] for ways to get
-started.
+See [`contributing.md`][contributing] in [`syntax-tree/.github`][health] for
+ways to get started.
 See [`support.md`][support] for ways to get help.
 
 This project has a [code of conduct][coc].
@@ -152,24 +202,40 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[typescript]: https://www.typescriptlang.org
+
 [license]: license
 
 [author]: https://efcl.info
+
+[health]: https://github.com/syntax-tree/.github
+
+[contributing]: https://github.com/syntax-tree/.github/blob/main/contributing.md
+
+[support]: https://github.com/syntax-tree/.github/blob/main/support.md
+
+[coc]: https://github.com/syntax-tree/.github/blob/main/code-of-conduct.md
 
 [unist]: https://github.com/syntax-tree/unist
 
 [node]: https://github.com/syntax-tree/unist#node
 
-[tree]: https://github.com/syntax-tree/unist#tree
-
 [parent]: https://github.com/syntax-tree/unist#parent-1
 
 [index]: https://github.com/syntax-tree/unist#index
 
-[callback]: #function-mapfnnode-index-parent
+[unist-util-visit]: https://github.com/syntax-tree/unist-util-visit
 
-[contributing]: https://github.com/syntax-tree/.github/blob/HEAD/contributing.md
+[unist-util-visit-parents]: https://github.com/syntax-tree/unist-util-visit-parents
 
-[support]: https://github.com/syntax-tree/.github/blob/HEAD/support.md
+[unist-util-filter]: https://github.com/syntax-tree/unist-util-filter
 
-[coc]: https://github.com/syntax-tree/.github/blob/HEAD/code-of-conduct.md
+[unist-util-remove]: https://github.com/syntax-tree/unist-util-remove
+
+[unist-builder]: https://github.com/syntax-tree/unist-builder
+
+[map-function]: #function-mapfunctionnode-index-parent

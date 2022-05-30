@@ -3,20 +3,25 @@
  */
 
 /**
- * Unist utility to create a new tree by mapping all nodes with the given function.
+ * Create a new tree by mapping all nodes with the given function.
  *
  * @template {Node} Tree
- * @param {Tree} tree Tree to map
- * @param {import('./complex-types').MapFunction<Tree>} iteratee Function that returns a new node
- * @returns {Tree} New mapped tree.
+ *   Type of input tree.
+ * @param {Tree} tree
+ *   Tree to map.
+ * @param {import('./complex-types').MapFunction<Tree>} mapFunction
+ *   Function called with a node, its index, and its parent to produce a new
+ *   node.
+ * @returns {Tree}
+ *   New mapped tree.
  */
-export function map(tree, iteratee) {
+export function map(tree, mapFunction) {
   // @ts-expect-error Looks like a children.
   return preorder(tree, null, null)
 
   /** @type {import('./complex-types').MapFunction<Tree>} */
   function preorder(node, index, parent) {
-    var newNode = Object.assign({}, iteratee(node, index, parent))
+    var newNode = Object.assign({}, mapFunction(node, index, parent))
 
     if ('children' in node) {
       // @ts-expect-error Looks like a parent.
