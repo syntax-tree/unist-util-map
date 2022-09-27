@@ -1,11 +1,12 @@
 /**
  * @typedef {import('unist').Node} Node
- * @typedef {import('unist').Parent} Parent
  */
 
 /**
- * @template {Node} [T = Node]
- * @typedef {import('./complex-types.js').MapFunction<T>} MapFunction<T>
+ * @template {Node} [Tree=Node]
+ * @typedef {import('./complex-types.js').MapFunction<Tree>} MapFunction
+ *   Function called with a node, its index, and its parent to produce a new
+ *   node.
  */
 
 /**
