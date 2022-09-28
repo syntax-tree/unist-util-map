@@ -133,8 +133,7 @@ if the original node has children, those are mapped instead.
 ## Types
 
 This package is fully typed with [TypeScript][].
-It exports a type `MapFunction<Tree extends Node = Node>` from
-`unist-util-map/complex-types.d.ts` to properly type `MapFunction`s.
+It exports a type `MapFunction<Tree extends Node = Node>` to properly type `MapFunction`s.
 
 ## Compatibility
 

@@ -3,13 +3,20 @@
  */
 
 /**
+ * @template {Node} [Tree=Node]
+ * @typedef {import('./complex-types.js').MapFunction<Tree>} MapFunction
+ *   Function called with a node, its index, and its parent to produce a new
+ *   node.
+ */
+
+/**
  * Create a new tree by mapping all nodes with the given function.
  *
  * @template {Node} Tree
  *   Type of input tree.
  * @param {Tree} tree
  *   Tree to map.
- * @param {import('./complex-types').MapFunction<Tree>} mapFunction
+ * @param {MapFunction<Tree>} mapFunction
  *   Function called with a node, its index, and its parent to produce a new
  *   node.
  * @returns {Tree}

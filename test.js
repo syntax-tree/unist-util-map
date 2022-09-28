@@ -46,6 +46,15 @@ test('unist-util-map', function (t) {
     'should work when passing an empty object'
   )
 
+  /** @type {Root} */
+  const tree = u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')])
+
+  t.deepEqual(
+    map(tree, asIs),
+    tree,
+    'should support an explicitly typed `MapFunction`'
+  )
+
   t.end()
 
   /**
@@ -68,5 +77,12 @@ test('unist-util-map', function (t) {
 
   function addValue() {
     return {value: 'test'}
+  }
+
+  /**
+   * @type {import('./index.js').MapFunction<Root>}
+   */
+  function asIs(node) {
+    return node
   }
 })
