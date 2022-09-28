@@ -1,6 +1,6 @@
 {
   "name": "unist-util-map",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "unist utility to create a new tree by mapping all nodes",
   "license": "MIT",
   "keywords": [
