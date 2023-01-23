@@ -5,14 +5,15 @@
  * @typedef {Root | Node | Leaf} AnyNode
  */
 
-import test from 'tape'
+import assert from 'node:assert/strict'
+import test from 'node:test'
 import {u} from 'unist-builder'
 import {map} from './index.js'
 
-test('unist-util-map', function (t) {
+test('map', function () {
   /** @type {Root} */
   const rootA = u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')])
-  t.deepEqual(
+  assert.deepEqual(
     map(rootA, changeLeaf),
     u('root', [u('node', [u('leaf', 'CHANGED')]), u('leaf', 'CHANGED')]),
     'should map the specified node'
@@ -26,7 +27,7 @@ test('unist-util-map', function (t) {
       {type: 'leaf', value: '2'}
     ]
   }
-  t.deepEqual(
+  assert.deepEqual(
     map(rootB, changeLeaf),
     u('root', [u('node', [u('leaf', 'CHANGED')]), u('leaf', 'CHANGED')]),
     'should map the specified node'
@@ -34,7 +35,7 @@ test('unist-util-map', function (t) {
 
   /** @type {Root} */
   const rootC = u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')])
-  t.deepEqual(
+  assert.deepEqual(
     // @ts-expect-error: invalid:
     map(rootC, nullLeaf),
     // @ts-expect-error: not valid but tested anyway.
@@ -42,7 +43,7 @@ test('unist-util-map', function (t) {
     'should work when retuning an empty object'
   )
 
-  t.deepEqual(
+  assert.deepEqual(
     // @ts-expect-error runtime.
     map({}, addValue),
     {value: 'test'},
@@ -52,24 +53,22 @@ test('unist-util-map', function (t) {
   /** @type {Root} */
   const tree = u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')])
 
-  t.deepEqual(
+  assert.deepEqual(
     map(tree, asIs),
     tree,
     'should support an explicitly typed `MapFunction`'
   )
-
-  t.end()
-
-  /**
-   * @param {AnyNode} node
-   * @returns {AnyNode}
-   */
-  function changeLeaf(node) {
-    return node.type === 'leaf'
-      ? Object.assign({}, node, {value: 'CHANGED'})
-      : node
-  }
 })
+
+/**
+ * @param {AnyNode} node
+ * @returns {AnyNode}
+ */
+function changeLeaf(node) {
+  return node.type === 'leaf'
+    ? Object.assign({}, node, {value: 'CHANGED'})
+    : node
+}
 
 /**
  * @param {AnyNode} node
