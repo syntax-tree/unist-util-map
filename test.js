@@ -10,30 +10,33 @@ import {u} from 'unist-builder'
 import {map} from './index.js'
 
 test('unist-util-map', function (t) {
+  /** @type {Root} */
+  const rootA = u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')])
   t.deepEqual(
-    map(u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')]), changeLeaf),
+    map(rootA, changeLeaf),
     u('root', [u('node', [u('leaf', 'CHANGED')]), u('leaf', 'CHANGED')]),
     'should map the specified node'
   )
 
+  /** @type {Root} */
+  const rootB = {
+    type: 'root',
+    children: [
+      {type: 'node', children: [{type: 'leaf', value: '1'}]},
+      {type: 'leaf', value: '2'}
+    ]
+  }
   t.deepEqual(
-    map(
-      /** @type {Root} */
-      ({
-        type: 'root',
-        children: [
-          {type: 'node', children: [{type: 'leaf', value: '1'}]},
-          {type: 'leaf', value: '2'}
-        ]
-      }),
-      changeLeaf
-    ),
+    map(rootB, changeLeaf),
     u('root', [u('node', [u('leaf', 'CHANGED')]), u('leaf', 'CHANGED')]),
     'should map the specified node'
   )
 
+  /** @type {Root} */
+  const rootC = u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')])
   t.deepEqual(
-    map(u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')]), nullLeaf),
+    // @ts-expect-error: invalid:
+    map(rootC, nullLeaf),
     // @ts-expect-error: not valid but tested anyway.
     u('root', [u('node', [{}]), {}]),
     'should work when retuning an empty object'
@@ -66,23 +69,23 @@ test('unist-util-map', function (t) {
       ? Object.assign({}, node, {value: 'CHANGED'})
       : node
   }
-
-  /**
-   * @param {AnyNode} node
-   * @returns {AnyNode?}
-   */
-  function nullLeaf(node) {
-    return node.type === 'leaf' ? null : node
-  }
-
-  function addValue() {
-    return {value: 'test'}
-  }
-
-  /**
-   * @type {import('./index.js').MapFunction<Root>}
-   */
-  function asIs(node) {
-    return node
-  }
 })
+
+/**
+ * @param {AnyNode} node
+ * @returns {Root | Node | null}
+ */
+function nullLeaf(node) {
+  return node.type === 'leaf' ? null : node
+}
+
+function addValue() {
+  return {value: 'test'}
+}
+
+/**
+ * @type {import('./index.js').MapFunction<Root>}
+ */
+function asIs(node) {
+  return node
+}

@@ -26,14 +26,14 @@ export function map(tree, mapFunction) {
   // @ts-expect-error Looks like a children.
   return preorder(tree, null, null)
 
-  /** @type {import('./complex-types').MapFunction<Tree>} */
+  /** @type {import('./complex-types.js').MapFunction<Tree>} */
   function preorder(node, index, parent) {
     var newNode = Object.assign({}, mapFunction(node, index, parent))
 
     if ('children' in node) {
       // @ts-expect-error Looks like a parent.
       newNode.children = node.children.map(function (
-        /** @type {import('./complex-types').InclusiveDescendant<Tree>} */ child,
+        /** @type {import('./complex-types.js').InclusiveDescendant<Tree>} */ child,
         /** @type {number} */ index
       ) {
         return preorder(child, index, node)
