@@ -9,8 +9,15 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import {u} from 'unist-builder'
 import {map} from './index.js'
+import * as mod from './index.js'
 
 test('map', function () {
+  assert.deepEqual(
+    Object.keys(mod).sort(),
+    ['map'],
+    'should expose the public api'
+  )
+
   /** @type {Root} */
   const rootA = u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')])
   assert.deepEqual(
