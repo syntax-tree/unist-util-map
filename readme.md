@@ -47,7 +47,7 @@ To create trees, use [`unist-builder`][unist-builder].
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, 16.0+, 18.0+), install with [npm][]:
+In Node.js (version 14.14+ and 16.0+), install with [npm][]:
 
 ```sh
 npm install unist-util-map
@@ -56,14 +56,14 @@ npm install unist-util-map
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {map} from "https://esm.sh/unist-util-map@3"
+import {map} from 'https://esm.sh/unist-util-map@3'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {map} from "https://esm.sh/unist-util-map@3?bundle"
+  import {map} from 'https://esm.sh/unist-util-map@3?bundle'
 </script>
 ```
 
@@ -107,39 +107,56 @@ Yields:
 
 ## API
 
-This package exports the identifier `map`.
+This package exports the identifier [`map`][api-map].
 There is no default export.
 
 ### `map(tree, mapFunction)`
 
-Create a new tree ([`Node`][node]) by mapping all nodes with the given function
-([`MapFunction`][map-function]).
+Create a new tree by mapping all nodes with the given function.
+
+###### Parameters
+
+*   `tree` ([`Node`][node])
+    — tree to map
+*   `mapFunction` ([`MapFunction`][api-mapfunction])
+    — function called with a node, its index, and its parent to produce a new
+    node
 
 ###### Returns
 
 New mapped tree ([`Node`][node]).
 
-#### `function mapFunction(node, index, parent)`
+#### `MapFunction`
 
-Function called with a node ([`Node`][node]), its [index][] (`number?`), and its
-[parent][] (`Node?`) to produce a new node.
+Function called with a node, its index, and its parent to produce a new
+node (TypeScript type).
+
+###### Parameters
+
+*   `node` ([`Node`][node])
+    — node to map
+*   `index` (`number` or `undefined`)
+    — index of `node` in `parent` (if any)
+*   `parent` ([`Node`][node] or `undefined`)
+    — parent of `node`
 
 ###### Returns
 
-Node to be used in the new tree ([`Node`][node]).
+New mapped node ([`Node`][node]).
+
 The children on the returned node are not used.
-if the original node has children, those are mapped instead.
+If the original node has children, those are mapped instead.
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-It exports a type `MapFunction<Tree extends Node = Node>` to properly type `MapFunction`s.
+It exports the additional type [`MapFunction`][api-mapfunction].
 
 ## Compatibility
 
 Projects maintained by the unified collective are compatible with all maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
+As of now, that is Node.js 14.14+ and 16.0+.
 Our projects sometimes work with older versions, but this is not guaranteed.
 
 ## Related
@@ -223,10 +240,6 @@ abide by its terms.
 
 [node]: https://github.com/syntax-tree/unist#node
 
-[parent]: https://github.com/syntax-tree/unist#parent-1
-
-[index]: https://github.com/syntax-tree/unist#index
-
 [unist-util-visit]: https://github.com/syntax-tree/unist-util-visit
 
 [unist-util-visit-parents]: https://github.com/syntax-tree/unist-util-visit-parents
@@ -237,4 +250,6 @@ abide by its terms.
 
 [unist-builder]: https://github.com/syntax-tree/unist-builder
 
-[map-function]: #function-mapfunctionnode-index-parent
+[api-map]: #maptree-mapfunction
+
+[api-mapfunction]: #mapfunction
