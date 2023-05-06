@@ -38,6 +38,12 @@ test('map', function () {
     map(rootB, changeLeaf),
     u('root', [u('node', [u('leaf', 'CHANGED')]), u('leaf', 'CHANGED')]),
     'should map the specified node'
+    )
+
+  assert.deepEqual(
+    map(rootB, changeChildrenLeaf, true),
+    u('root', [u('node', [u('leaf', 'CREATED'), u('leaf', 'CREATED'), ]), u('leaf', '2')]),
+    'should replace the children of nodes with the children of the new node'
   )
 
   /** @type {Root} */
@@ -74,6 +80,16 @@ test('map', function () {
 function changeLeaf(node) {
   return node.type === 'leaf'
     ? Object.assign({}, node, {value: 'CHANGED'})
+    : node
+}
+
+/**
+ * @param {AnyNode} node
+ * @returns {AnyNode}
+ */
+function changeChildrenLeaf(node) {
+  return node.type === 'node'
+    ? Object.assign({}, node, {children: [u('leaf', 'CREATED'), u('leaf', 'CREATED')]})
     : node
 }
 

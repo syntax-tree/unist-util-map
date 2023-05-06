@@ -18,7 +18,7 @@ function.
 *   [Install](#install)
 *   [Use](#use)
 *   [API](#api)
-    *   [`map(tree, mapFunction)`](#maptree-mapfunction)
+    *   [`map(tree, mapFunction, replaceChildren)`](#maptree-mapfunction)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Related](#related)
@@ -110,7 +110,7 @@ Yields:
 This package exports the identifier [`map`][api-map].
 There is no default export.
 
-### `map(tree, mapFunction)`
+### `map(tree, mapFunction, replaceChildren)`
 
 Create a new tree by mapping all nodes with the given function.
 
@@ -121,6 +121,8 @@ Create a new tree by mapping all nodes with the given function.
 *   `mapFunction` ([`MapFunction`][api-mapfunction])
     — function called with a node, its index, and its parent to produce a new
     node
+*   `replaceChildren` (`[boolean=false]`)
+    — whether to replace the children of nodes with the children of the new node.
 
 ###### Returns
 
