@@ -1,16 +1,17 @@
 /**
- * @typedef {import('mdast').Content} Content
  * @typedef {import('mdast').Root} Root
  */
 
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import {u} from 'unist-builder'
-import {map} from './index.js'
+import {map} from 'unist-util-map'
 
 test('map', async function (t) {
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('./index.js')).sort(), ['map'])
+    assert.deepEqual(Object.keys(await import('unist-util-map')).sort(), [
+      'map'
+    ])
   })
 
   await t.test('should map the specified node', async function () {
