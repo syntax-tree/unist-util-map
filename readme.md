@@ -80,13 +80,13 @@ const tree = u('tree', [
   u('leaf', 'leaf 3')
 ])
 
-const next = map(tree, (node) => {
+const next = map(tree, function (node) {
   return node.type === 'leaf'
     ? Object.assign({}, node, {value: 'CHANGED'})
     : node
 })
 
-console.dir(next, {depth: null})
+console.dir(next, {depth: undefined})
 ```
 
 Yields:

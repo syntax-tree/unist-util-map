@@ -1,97 +1,52 @@
 /**
- * @typedef {{type: 'leaf', value: string}} Leaf
- * @typedef {{type: 'node', children: Array<Node | Leaf>}} Node
- * @typedef {{type: 'root', children: Array<Node | Leaf>}} Root
- * @typedef {Root | Node | Leaf} AnyNode
+ * @typedef {import('mdast').Content} Content
+ * @typedef {import('mdast').Root} Root
  */
 
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import {u} from 'unist-builder'
 import {map} from './index.js'
-import * as mod from './index.js'
 
-test('map', function () {
-  assert.deepEqual(
-    Object.keys(mod).sort(),
-    ['map'],
-    'should expose the public api'
-  )
+test('map', async function (t) {
+  await t.test('should expose the public api', async function () {
+    assert.deepEqual(Object.keys(await import('./index.js')).sort(), ['map'])
+  })
 
-  /** @type {Root} */
-  const rootA = u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')])
-  assert.deepEqual(
-    map(rootA, changeLeaf),
-    u('root', [u('node', [u('leaf', 'CHANGED')]), u('leaf', 'CHANGED')]),
-    'should map the specified node'
-  )
+  await t.test('should map the specified node', async function () {
+    /** @type {Root} */
+    const tree = u('root', [u('paragraph', [u('text', '1')]), u('text', '2')])
 
-  /** @type {Root} */
-  const rootB = {
-    type: 'root',
-    children: [
-      {type: 'node', children: [{type: 'leaf', value: '1'}]},
-      {type: 'leaf', value: '2'}
-    ]
-  }
-  assert.deepEqual(
-    map(rootB, changeLeaf),
-    u('root', [u('node', [u('leaf', 'CHANGED')]), u('leaf', 'CHANGED')]),
-    'should map the specified node'
-  )
+    assert.deepEqual(
+      map(tree, changeLeaf),
+      u('root', [u('paragraph', [u('text', 'CHANGED')]), u('text', 'CHANGED')])
+    )
+  })
 
-  /** @type {Root} */
-  const rootC = u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')])
-  assert.deepEqual(
-    // @ts-expect-error: invalid:
-    map(rootC, nullLeaf),
-    // @ts-expect-error: not valid but tested anyway.
-    u('root', [u('node', [{}]), {}]),
-    'should work when retuning an empty object'
-  )
+  await t.test('should map the specified node', async function () {
+    /** @type {Root} */
+    const tree = u('root', [u('paragraph', [u('text', '1')]), u('text', '2')])
 
-  assert.deepEqual(
-    // @ts-expect-error runtime.
-    map({}, addValue),
-    {value: 'test'},
-    'should work when passing an empty object'
-  )
+    assert.deepEqual(
+      map(tree, changeLeaf),
+      u('root', [u('paragraph', [u('text', 'CHANGED')]), u('text', 'CHANGED')])
+    )
+  })
 
-  /** @type {Root} */
-  const tree = u('root', [u('node', [u('leaf', '1')]), u('leaf', '2')])
-
-  assert.deepEqual(
-    map(tree, asIs),
-    tree,
-    'should support an explicitly typed `MapFunction`'
-  )
+  await t.test('should work when passing an empty object', async function () {
+    assert.deepEqual(
+      // @ts-expect-error: check how not-a-node is handled.
+      map({}, function () {
+        return {value: 'test'}
+      }),
+      {value: 'test'}
+    )
+  })
 })
-
-/**
- * @param {AnyNode} node
- * @returns {AnyNode}
- */
-function changeLeaf(node) {
-  return node.type === 'leaf'
-    ? Object.assign({}, node, {value: 'CHANGED'})
-    : node
-}
-
-/**
- * @param {AnyNode} node
- * @returns {Root | Node | null}
- */
-function nullLeaf(node) {
-  return node.type === 'leaf' ? null : node
-}
-
-function addValue() {
-  return {value: 'test'}
-}
 
 /**
  * @type {import('./index.js').MapFunction<Root>}
  */
-function asIs(node) {
-  return node
+function changeLeaf(node) {
+  return node.type === 'text' ? {...node, value: 'CHANGED'} : node
 }
