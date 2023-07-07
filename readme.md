@@ -56,14 +56,14 @@ npm install unist-util-map
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {map} from 'https://esm.sh/unist-util-map@3'
+import {map} from 'https://esm.sh/unist-util-map@4'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {map} from 'https://esm.sh/unist-util-map@3?bundle'
+  import {map} from 'https://esm.sh/unist-util-map@4?bundle'
 </script>
 ```
 
